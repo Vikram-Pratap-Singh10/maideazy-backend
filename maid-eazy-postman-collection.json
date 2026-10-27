@@ -1,0 +1,2369 @@
+
+{
+  "info": {
+    "name": "Maid Eazy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Maid Eazy backend API"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"fullName\":\"John Doe\",\"email\":\"john@example.com\",\"phone\":\"1234567890\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"phone\":\"1234567890\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify-otp"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          }
+        },
+        {
+          "name": "Pincode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"pincode\":\"123456\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/pincode",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "pincode"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/profile",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "fullName",
+                  "value": "John Doe",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "1234567890",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "john@example.com",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/profile",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Get All Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/all-user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "all-user"]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/:userId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"house\":\"123 Main St\",\"city\":\"City\",\"state\":\"State\",\"pincode\":\"123456\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/addresses",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "addresses"]
+            }
+          }
+        },
+        {
+          "name": "Get Addresses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/addresses",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "addresses"]
+            }
+          }
+        },
+        {
+          "name": "Update Address",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"house\":\"Updated Address\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/addresses/:addressId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "addresses", ":addressId"],
+              "variable": [
+                {
+                  "key": "addressId",
+                  "value": "address_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Address",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/addresses/:addressId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "addresses", ":addressId"],
+              "variable": [
+                {
+                  "key": "addressId",
+                  "value": "address_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Maids",
+      "item": [
+        {
+          "name": "Get All Maids",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maids",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids"]
+            }
+          }
+        },
+        {
+          "name": "Get Maid by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maids/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Maid Availability",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maids/:maidId/availability",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids", ":maidId", "availability"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Bookings by Maid",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maids/bookings/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids", "bookings", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Maid (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/maids",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids"]
+            }
+          }
+        },
+        {
+          "name": "Update Maid (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/maids/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Maid (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maids/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "View Maids (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maids/view-maids",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maids", "view-maids"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Get All Services with Offers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services"]
+            }
+          }
+        },
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/all-service",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", "all-service"]
+            }
+          }
+        },
+        {
+          "name": "View Services (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/view-services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", "view-services"]
+            }
+          }
+        },
+        {
+          "name": "Get Service by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/:serviceId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", ":serviceId"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Service (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"service_name\":\"Cleaning\",\"description\":\"House cleaning\",\"duration\":\"2\",\"discountAmount\":\"100\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services"]
+            }
+          }
+        },
+        {
+          "name": "Update Service (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"service_name\":\"Updated Cleaning\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services/:serviceId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", ":serviceId"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Service (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/services/:serviceId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", ":serviceId"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Maid Availability",
+      "item": [
+        {
+          "name": "Get Maid Availability",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/availability/maid/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "availability", "maid", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Availability (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"date\":\"2023-10-01\",\"startTime\":\"09:00\",\"endTime\":\"17:00\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/availability/maid/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "availability", "maid", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Availability (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"startTime\":\"10:00\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/availability/:availabilityId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "availability", ":availabilityId"],
+              "variable": [
+                {
+                  "key": "availabilityId",
+                  "value": "availability_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Availability (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/availability/:availabilityId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "availability", ":availabilityId"],
+              "variable": [
+                {
+                  "key": "availabilityId",
+                  "value": "availability_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Availability (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/availability",
+              "host": ["{{base_url}}"],
+              "path": ["api", "availability"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"serviceId\":\"service_id\",\"bookingDate\":\"2023-10-01T10:00:00Z\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings"]
+            }
+          }
+        },
+        {
+          "name": "Get User Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/:bookingId/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", ":bookingId", "cancel"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Booking Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\":\"completed\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/:bookingId/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", ":bookingId", "status"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Submit Pin and Start Timer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"pin\":\"1234\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/:bookingId/submit-pin",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", ":bookingId", "submit-pin"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Extend Booking Time",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"additionalHours\":1}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/:bookingId/extend-time",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", ":bookingId", "extend-time"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Bookings (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/all-booking",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "all-booking"]
+            }
+          }
+        },
+        {
+          "name": "Get Booking by ID (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/booking-by-id/:bookingId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "booking-by-id", ":bookingId"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Assign Maid to Booking (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"maidId\":\"maid_id\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/:bookingId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", ":bookingId"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get New Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/new",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "new"]
+            }
+          }
+        },
+        {
+          "name": "Get Ongoing Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/ongoing",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "ongoing"]
+            }
+          }
+        },
+        {
+          "name": "Get Completed Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/completed",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "completed"]
+            }
+          }
+        },
+        {
+          "name": "Get Cancelled Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/cancelled",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "cancelled"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Process Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookingId\":\"booking_id\",\"amount\":100}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments/process",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "process"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment by Booking",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/booking/:bookingId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "booking", ":bookingId"],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User Payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments"]
+            }
+          }
+        },
+        {
+          "name": "Add Amount to Wallet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"amount\":50}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments/add-amount",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "add-amount"]
+            }
+          }
+        },
+        {
+          "name": "Verify Payment Process",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"paymentId\":\"payment_id\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payments/verify-amount",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payments", "verify-amount"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Add Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookingId\":\"booking_id\",\"maidId\":\"maid_id\",\"rating\":5,\"reviewMessage\":\"Great service\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reviews"]
+            }
+          }
+        },
+        {
+          "name": "Get Reviews by Maid",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/reviews/maid/:maidId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reviews", "maid", ":maidId"],
+              "variable": [
+                {
+                  "key": "maidId",
+                  "value": "maid_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Dashboard Stats (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/stats-dashboard",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "stats-dashboard"]
+            }
+          }
+        },
+        {
+          "name": "Get Recent Bookings (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/recent-booking",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "recent-booking"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"senderId\":\"user_id\",\"receiverId\":\"maid_id\",\"message\":\"Hello\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/message/send-messages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "message", "send-messages"]
+            }
+          }
+        },
+        {
+          "name": "Get Messages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\":\"user_id\",\"otherUserId\":\"maid_id\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/message/get-messages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "message", "get-messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Add Favorite Maid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"maidId\":\"maid_id\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/favorite/add",
+              "host": ["{{base_url}}"],
+              "path": ["api", "favorite", "add"]
+            }
+          }
+        },
+        {
+          "name": "Remove Favorite Maid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"maidId\":\"maid_id\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/favorite/remove",
+              "host": ["{{base_url}}"],
+              "path": ["api", "favorite", "remove"]
+            }
+          }
+        },
+        {
+          "name": "Get Favorite Maids",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/favorite/get-maids",
+              "host": ["{{base_url}}"],
+              "path": ["api", "favorite", "get-maids"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Offers",
+      "item": [
+        {
+          "name": "Get All Offers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/offers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers"]
+            }
+          }
+        },
+        {
+          "name": "Get Offer by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/offers/:offerId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers", ":offerId"],
+              "variable": [
+                {
+                  "key": "offerId",
+                  "value": "offer_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Offers by Service",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/offers/service/:serviceId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers", "service", ":serviceId"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Apply Offer to Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"offerId\":\"offer_id\",\"serviceId\":\"service_id\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/offers/apply",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers", "apply"]
+            }
+          }
+        },
+        {
+          "name": "Create Offer (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\":\"Discount\",\"type\":\"promotional\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/offers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers"]
+            }
+          }
+        },
+        {
+          "name": "Update Offer (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\":\"Updated Discount\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/offers/:offerId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers", ":offerId"],
+              "variable": [
+                {
+                  "key": "offerId",
+                  "value": "offer_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Offer (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/offers/:offerId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "offers", ":offerId"],
+              "variable": [
+                {
+                  "key": "offerId",
+                  "value": "offer_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Arrival Configs",
+      "item": [
+        {
+          "name": "Get All Arrival Configs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs"]
+            }
+          }
+        },
+        {
+          "name": "Get Current Arrival Config",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs/current",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs", "current"]
+            }
+          }
+        },
+        {
+          "name": "Get Arrival Config by Season",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs/season/:season",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs", "season", ":season"],
+              "variable": [
+                {
+                  "key": "season",
+                  "value": "summer"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Arrival Config by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs/:configId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs", ":configId"],
+              "variable": [
+                {
+                  "key": "configId",
+                  "value": "config_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Arrival Config (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"season\":\"summer\",\"arrivalTime\":30}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs"]
+            }
+          }
+        },
+        {
+          "name": "Update Arrival Config (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"season\":\"winter\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs/:configId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs", ":configId"],
+              "variable": [
+                {
+                  "key": "configId",
+                  "value": "config_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Arrival Config (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/arrival-configs/:configId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "arrival-configs", ":configId"],
+              "variable": [
+                {
+                  "key": "configId",
+                  "value": "config_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Time Slots",
+      "item": [
+        {
+          "name": "Get All Time Slots",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/time-slots",
+              "host": ["{{base_url}}"],
+              "path": ["api", "time-slots"]
+            }
+          }
+        },
+        {
+          "name": "Get Time Slot by Label",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/time-slots/label/:label",
+              "host": ["{{base_url}}"],
+              "path": ["api", "time-slots", "label", ":label"],
+              "variable": [
+                {
+                  "key": "label",
+                  "value": "Morning"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Time Slot by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/time-slots/:slotId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "time-slots", ":slotId"],
+              "variable": [
+                {
+                  "key": "slotId",
+                  "value": "slot_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Time Slot (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"label\":\"Morning\",\"times\":[\"09:00\",\"10:00\"]}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/time-slots",
+              "host": ["{{base_url}}"],
+              "path": ["api", "time-slots"]
+            }
+          }
+        },
+        {
+          "name": "Update Time Slot (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"label\":\"Afternoon\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/time-slots/:slotId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "time-slots", ":slotId"],
+              "variable": [
+                {
+                  "key": "slotId",
+                  "value": "slot_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Time Slot (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/time-slots/:slotId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "time-slots", ":slotId"],
+              "variable": [
+                {
+                  "key": "slotId",
+                  "value": "slot_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "item": [
+        {
+          "name": "Get Settings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/settings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "settings"]
+            }
+          }
+        },
+        {
+          "name": "Create Settings (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"key\":\"value\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/settings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "settings"]
+            }
+          }
+        },
+        {
+          "name": "Update Settings (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"key\":\"updated_value\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/settings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "settings"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Banners",
+      "item": [
+        {
+          "name": "Get All Banners",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/banners",
+              "host": ["{{base_url}}"],
+              "path": ["api", "banners"]
+            }
+          }
+        },
+        {
+          "name": "Get Banner by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/banners/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "banners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "banner_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Banner (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/banners",
+              "host": ["{{base_url}}"],
+              "path": ["api", "banners"]
+            }
+          }
+        },
+        {
+          "name": "Update Banner (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/banners/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "banners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "banner_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Banner (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/banners/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "banners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "banner_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Buildings",
+      "item": [
+        {
+          "name": "Get All Buildings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/buildings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "buildings"]
+            }
+          }
+        },
+        {
+          "name": "Get Building by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/buildings/:buildingId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "buildings", ":buildingId"],
+              "variable": [
+                {
+                  "key": "buildingId",
+                  "value": "building_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Building (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Building A\",\"address\":\"123 Street\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/buildings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "buildings"]
+            }
+          }
+        },
+        {
+          "name": "Update Building (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Updated Building\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/buildings/:buildingId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "buildings", ":buildingId"],
+              "variable": [
+                {
+                  "key": "buildingId",
+                  "value": "building_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Building (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/buildings/:buildingId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "buildings", ":buildingId"],
+              "variable": [
+                {
+                  "key": "buildingId",
+                  "value": "building_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "App Version",
+      "item": [
+        {
+          "name": "Get Latest App Version (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/app-version/latest",
+              "host": ["{{base_url}}"],
+              "path": ["api", "app-version", "latest"]
+            }
+          }
+        },
+        {
+          "name": "Get All App Versions (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/app-version",
+              "host": ["{{base_url}}"],
+              "path": ["api", "app-version"]
+            }
+          }
+        },
+        {
+          "name": "Create App Version (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"versionCode\":\"1\",\"version\":\"1.0.0\",\"forceUpdate\":false,\"androidLink\":\"https://example.com/android.apk\",\"iosLink\":\"https://example.com/ios.ipa\",\"isSkip\":true,\"visible\":true}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/app-version",
+              "host": ["{{base_url}}"],
+              "path": ["api", "app-version"]
+            }
+          }
+        },
+        {
+          "name": "Update App Version (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"versionCode\":\"2\",\"version\":\"1.0.1\",\"forceUpdate\":true,\"androidLink\":\"https://example.com/android-v2.apk\",\"iosLink\":\"https://example.com/ios-v2.ipa\",\"isSkip\":false,\"visible\":true}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/app-version/:versionId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "app-version", ":versionId"],
+              "variable": [
+                {
+                  "key": "versionId",
+                  "value": "version_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete App Version (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/app-version/:versionId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "app-version", ":versionId"],
+              "variable": [
+                {
+                  "key": "versionId",
+                  "value": "version_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
